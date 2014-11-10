@@ -10,8 +10,11 @@ struct Foo {
 }
 
 fn main() {
-    let wm = std::io::MemWriter::new();
-    let enc = empty::Encoder::new(wm);
+    let mut wm = std::io::MemWriter::new();
+    let mut enc = empty::Encoder::new(&mut wm);
+
+    let foo = Foo { this: 33 };
+    foo.encode(&mut enc);
 
     println!("Hello, world!")
 }
