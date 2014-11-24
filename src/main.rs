@@ -12,10 +12,11 @@ struct Foo {
 
 fn main() {
     let mut wm = std::io::MemWriter::new();
-    let mut enc = empty::writer::T::new(&mut wm);
+    {
+        let mut enc = empty::writer::T::new(&mut wm);
+        let foo = Foo { this: 33 };
+        foo.encode(&mut enc);
+    }
 
-    let foo = Foo { this: 33 };
-    foo.encode(&mut enc);
-
-    println!("Hello, world!")
+    println!("encoded to {}", wm.unwrap())
 }

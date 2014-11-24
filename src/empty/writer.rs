@@ -5,6 +5,7 @@ pub enum E {
     Other(String)
 }
 
+/// An Encoder which compiles but always returns an error
 pub struct T<'a, W : 'a + std::io::Writer> {
     writer : &'a mut W,
 }
